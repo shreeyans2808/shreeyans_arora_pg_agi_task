@@ -1,42 +1,11 @@
 import streamlit as st
 import os
-import groq
 import json
 from datetime import datetime
+from groq import Groq
 
-def get_api_key():
-    """Get API key from Streamlit secrets or environment variables"""
-    # Try Streamlit secrets first
-    api_key = st.secrets.get("GROQ_API_KEY")
-    
-    # If not in secrets, try environment variable
-    if not api_key:
-        api_key = os.environ.get("GROQ_API_KEY")
-    
-    return api_key
-
-# Initialize Groq client with API key
-try:
-    api_key = get_api_key()
-    if not api_key:
-        st.error("""
-        Please set your GROQ_API_KEY in one of the following ways:
-        
-        1. For local development:
-           - Create a .streamlit/secrets.toml file with:
-           ```toml
-           GROQ_API_KEY = "your_groq_api_key_here"
-           ```
-        
-        2. For deployment:
-           - Streamlit Cloud: Add the secret in the dashboard
-           - Other platforms: Set GROQ_API_KEY environment variable
-        """)
-        st.stop()
-    client = groq.Client(api_key=api_key)
-except Exception as e:
-    st.error(f"Error initializing Groq client: {str(e)}")
-    st.stop()
+# Initialize Groq client
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # System prompt for the chatbot
 SYSTEM_PROMPT = """You are an AI hiring assistant for TalentScout, a technology recruitment agency. Your role is to:
