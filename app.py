@@ -85,6 +85,10 @@ def initialize_session_state():
             "questions": {}  # Format: {"tech": ["question1", "question2", ...]}
         }
     
+    # Initialize session ID if not exists
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
     # Then initialize messages and add greeting
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -118,30 +122,36 @@ def get_chat_response(user_input):
 
 def save_conversation_data():
     """Save the conversation data to a JSON file"""
-    # Create data directory if it doesn't exist
-    if not os.path.exists('data'):
-        os.makedirs('data')
-    
-    # Prepare the data to save
-    data = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "candidate_info": st.session_state.conversation_state["collected_info"],
-        "tech_stack": st.session_state.conversation_state["collected_info"].get("tech_stack", []),
-        "scores": st.session_state.conversation_state["scores"],
-        "conversation_summary": [
-            {"role": msg["role"], "content": msg["content"]} 
-            for msg in st.session_state.messages
-        ]
-    }
-    
-    # Generate filename with timestamp
-    filename = f"data/candidate_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    
-    # Save to file
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
-    
-    return filename
+    try:
+        # Create data directory if it doesn't exist
+        data_dir = os.path.join(os.getcwd(), 'data')
+        if not os.path.exists(data_dir):
+            os.makedirs(data_dir)
+        
+        # Prepare the data to save
+        data = {
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "candidate_info": st.session_state.conversation_state["collected_info"],
+            "tech_stack": st.session_state.conversation_state["collected_info"].get("tech_stack", []),
+            "scores": st.session_state.conversation_state["scores"],
+            "conversation_summary": [
+                {"role": msg["role"], "content": msg["content"]} 
+                for msg in st.session_state.messages
+            ]
+        }
+        
+        # Generate filename with timestamp and session ID
+        session_id = st.session_state.get("session_id", datetime.now().strftime("%Y%m%d_%H%M%S"))
+        filename = f"data/candidate_{session_id}.json"
+        
+        # Save to file
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=4)
+        
+        return filename
+    except Exception as e:
+        st.error(f"Error saving conversation data: {str(e)}")
+        return None
 
 def update_conversation_state(user_input):
     state = st.session_state.conversation_state
@@ -205,7 +215,20 @@ def update_conversation_state(user_input):
                     state["stage"] = "summary"
 
 def main():
+    st.set_page_config(
+        page_title="TalentScout AI Hiring Assistant",
+        page_icon="🤖",
+        layout="wide",
+        initial_sidebar_state="collapsed"
+    )
+    
     st.title("TalentScout AI Hiring Assistant")
+    
+    # Add a small description
+    st.markdown("""
+    Welcome to the TalentScout AI Hiring Assistant. I'll help assess your technical skills and experience.
+    Please follow the prompts and answer the questions to the best of your ability.
+    """)
     
     initialize_session_state()
     
