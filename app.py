@@ -5,7 +5,15 @@ import json
 from datetime import datetime
 
 # Initialize Groq client with Streamlit secrets
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+try:
+    api_key = st.secrets.get("GROQ_API_KEY")
+    if not api_key:
+        st.error("Please set your GROQ_API_KEY in Streamlit secrets")
+        st.stop()
+    client = Groq(api_key=api_key)
+except Exception as e:
+    st.error(f"Error initializing Groq client: {str(e)}")
+    st.stop()
 
 # System prompt for the chatbot
 SYSTEM_PROMPT = """You are an AI hiring assistant for TalentScout, a technology recruitment agency. Your role is to:
