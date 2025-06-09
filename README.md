@@ -4,7 +4,7 @@ An intelligent chatbot designed to assist in the initial screening of candidates
 
 ## 🌐 Live Demo
 
-The application is deployed and can be accessed at: [TalentScout AI Hiring Assistant](https://talent-scout-ai.streamlit.app)
+The application is deployed and can be accessed at: [TalentScout AI Hiring Assistant](https://pg-agi-shreeyans.streamlit.app/)
 
 ## Features
 
