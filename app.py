@@ -120,7 +120,7 @@ def get_chat_response(user_input):
         
         # Get response from Groq with error handling
         response = client.chat.completions.create(
-            model="llama-3.1-70b-versatile",  # Using a more stable model
+            model="meta-llama/llama-4-scout-17b-16e-instruct",  # Using a more stable model
             messages=messages,
             temperature=0.7,
             max_tokens=1024,
