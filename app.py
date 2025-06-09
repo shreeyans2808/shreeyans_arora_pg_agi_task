@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import json
 from datetime import datetime
-import groq
+from groq import Groq
 
 # Initialize Groq client
 try:
@@ -22,7 +22,7 @@ try:
            - Other platforms: Set GROQ_API_KEY environment variable
         """)
         st.stop()
-    client = groq.Client(api_key=api_key)
+    client = Groq(api_key=api_key)
 except Exception as e:
     st.error(f"Error initializing Groq client: {str(e)}")
     st.stop()
