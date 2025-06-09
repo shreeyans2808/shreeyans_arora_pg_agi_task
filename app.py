@@ -8,8 +8,8 @@ from datetime import datetime
 # Load environment variables
 load_dotenv()
 
-# Initialize Groq client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# Initialize Groq client with Streamlit secrets
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # System prompt for the chatbot
 SYSTEM_PROMPT = """You are an AI hiring assistant for TalentScout, a technology recruitment agency. Your role is to:
