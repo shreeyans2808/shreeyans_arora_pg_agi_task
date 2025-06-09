@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from groq import Groq
+import groq
 import json
 from datetime import datetime
 
@@ -10,7 +10,7 @@ try:
     if not api_key:
         st.error("Please set your GROQ_API_KEY in Streamlit secrets")
         st.stop()
-    client = Groq(api_key=api_key)
+    client = groq.Client(api_key=api_key)
 except Exception as e:
     st.error(f"Error initializing Groq client: {str(e)}")
     st.stop()
