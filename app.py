@@ -5,7 +5,27 @@ from datetime import datetime
 import groq
 
 # Initialize Groq client
-client = groq.Client(api_key=st.secrets["GROQ_API_KEY"])
+try:
+    api_key = st.secrets.get("GROQ_API_KEY")
+    if not api_key:
+        st.error("""
+        Please set your GROQ_API_KEY in your Streamlit secrets:
+        
+        1. For local development:
+           - Create a .streamlit/secrets.toml file with:
+           ```toml
+           GROQ_API_KEY = "your_groq_api_key_here"
+           ```
+        
+        2. For deployment:
+           - Streamlit Cloud: Add the secret in the dashboard
+           - Other platforms: Set GROQ_API_KEY environment variable
+        """)
+        st.stop()
+    client = groq.Client(api_key=api_key)
+except Exception as e:
+    st.error(f"Error initializing Groq client: {str(e)}")
+    st.stop()
 
 # System prompt for the chatbot
 SYSTEM_PROMPT = """You are an AI hiring assistant for TalentScout, a technology recruitment agency. Your role is to:
