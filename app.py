@@ -2,10 +2,10 @@ import streamlit as st
 import os
 import json
 from datetime import datetime
-from groq import Groq
+import groq
 
 # Initialize Groq client
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+client = groq.Client(api_key=st.secrets["GROQ_API_KEY"])
 
 # System prompt for the chatbot
 SYSTEM_PROMPT = """You are an AI hiring assistant for TalentScout, a technology recruitment agency. Your role is to:
