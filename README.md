@@ -90,23 +90,41 @@ When the conversation ends, all data is saved to a JSON file in the `data` direc
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up Streamlit secrets:
+3. Set up your Groq API key:
+
+   a. For local development:
    - Create a `.streamlit/secrets.toml` file in your project directory
    - Add your Groq API key:
    ```toml
    GROQ_API_KEY = "your_groq_api_key_here"
    ```
-   - For local development, create this file in `~/.streamlit/secrets.toml`
-   - For Streamlit Cloud deployment, add the secret in the dashboard
+
+   b. For deployment:
+   - Streamlit Cloud: Add the secret in the dashboard
+   - Other platforms: Set GROQ_API_KEY environment variable
 
 ## Running the Application
 
-To start the application, run:
+To start the application locally:
 ```bash
 streamlit run app.py
 ```
 
 The application will be available at `http://localhost:8501` by default.
+
+## Deployment
+
+### Streamlit Cloud
+1. Push your code to a GitHub repository
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub repository
+4. Add your Groq API key in the secrets management section
+5. Deploy the app
+
+### Other Platforms
+1. Set the GROQ_API_KEY environment variable in your platform's configuration
+2. Deploy the application using your platform's deployment process
+3. Make sure the `data` directory is writable for conversation storage
 
 ## Usage
 
