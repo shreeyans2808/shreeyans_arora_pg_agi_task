@@ -6,6 +6,17 @@ An intelligent chatbot designed to assist in the initial screening of candidates
 
 The application is deployed and can be accessed at: [TalentScout AI Hiring Assistant](https://pg-agi-shreeyans.streamlit.app/)
 
+## 🎥 Video Demonstration
+
+Watch a demo of the TalentScout AI Hiring Assistant in action: [Demo Video](https://share.descript.com/view/MAU4fYeJsyG)
+
+The video demonstrates:
+- Initial greeting and conversation flow
+- Information collection process
+- Tech stack assessment
+- Technical question generation and scoring
+- Data persistence and download functionality
+
 ## Features
 
 - Professional greeting and conversation flow
