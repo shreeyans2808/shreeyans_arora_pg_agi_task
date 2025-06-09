@@ -10,7 +10,7 @@ try:
     if not api_key:
         st.error("Please set your GROQ_API_KEY in Streamlit secrets")
         st.stop()
-    client = groq.Client(api_key=api_key)
+    client = groq.Client(api_key=api_key, timeout=60.0)
 except Exception as e:
     st.error(f"Error initializing Groq client: {str(e)}")
     st.stop()

@@ -1,0 +1,26 @@
+{
+    "timestamp": "2025-06-10 00:46:03",
+    "candidate_info": {
+        "name": "shreeyans"
+    },
+    "tech_stack": [],
+    "scores": {},
+    "conversation_summary": [
+        {
+            "role": "assistant",
+            "content": "Hello! Welcome to TalentScout. I'm excited to learn more about your technical background and interests. \n\nTo get started, could you please tell me your full name?"
+        },
+        {
+            "role": "user",
+            "content": "shreeyans"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you for confirming. So, I have your name as Shreeyans. \n\nNext, could you please provide your email address?"
+        },
+        {
+            "role": "user",
+            "content": "bye"
+        }
+    ]
+}
