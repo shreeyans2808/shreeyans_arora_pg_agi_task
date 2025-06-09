@@ -2,6 +2,10 @@
 
 An intelligent chatbot designed to assist in the initial screening of candidates for technology positions. The chatbot uses the Groq API to provide natural language interactions and generate relevant technical questions based on candidates' tech stacks.
 
+## 🌐 Live Demo
+
+The application is deployed and can be accessed at: [TalentScout AI Hiring Assistant](https://talent-scout-ai.streamlit.app)
+
 ## Features
 
 - Professional greeting and conversation flow
@@ -114,17 +118,19 @@ The application will be available at `http://localhost:8501` by default.
 
 ## Deployment
 
-### Streamlit Cloud
-1. Push your code to a GitHub repository
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repository
-4. Add your Groq API key in the secrets management section
-5. Deploy the app
+The application is deployed on Streamlit Cloud and can be accessed through the link above. The deployment includes:
 
-### Other Platforms
-1. Set the GROQ_API_KEY environment variable in your platform's configuration
-2. Deploy the application using your platform's deployment process
-3. Make sure the `data` directory is writable for conversation storage
+- Secure API key management through Streamlit secrets
+- Persistent session management
+- Automatic data saving and download functionality
+- Optimized performance for cloud environment
+
+### Deployment Status
+
+- ✅ Application deployed
+- ✅ API integration working
+- ✅ Data persistence implemented
+- ✅ Security measures in place
 
 ## Usage
 

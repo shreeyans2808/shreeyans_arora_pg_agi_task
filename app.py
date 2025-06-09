@@ -232,7 +232,7 @@ def main():
         initial_sidebar_state="collapsed"
     )
     
-    st.title("🤖 TalentScout AI Hiring Assistant")
+    st.title("TalentScout AI Hiring Assistant")
     
     # Add a small description
     st.markdown("""
